@@ -44,13 +44,15 @@ services:
     container_name: frontend
     hostname: frontend
     image: frontend
-    ports:
-      - "8061:80"
-    restart: unless-stopped
-    env_file: ./.env
     build:
-        context: ./frontend
-        dockerfile: Dockerfile
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        ENV_VARIABLE: ${ENV_VARIABLE}
+        NEXT_PUBLIC_ENV_VARIABLE: ${NEXT_PUBLIC_ENV_VARIABLE}
+    restart: always
+    ports:
+      - 8061:3000
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.frontend.rule=Host(`${LOCAL_IP}`)"
@@ -58,10 +60,6 @@ services:
       - "traefik.http.routers.frontend.entrypoints=web"
       - "traefik.http.routers.frontend.entrypoints=websecure"
       - "traefik.http.routers.frontend.tls=true"
-    depends_on:
-      - mongo
-    networks:
-      - default
 
   backend:
     container_name: backend
@@ -115,3 +113,28 @@ networks:
 secrets:
   mongodb_root_password:
     file: mongodb_root_password.txt
+
+# -services:
+  # frontendvue:
+  #   container_name: frontendvue
+  #   hostname: frontendvue
+  #   image: frontendvue
+  #   ports:
+  #     - "8061:80"
+  #   restart: unless-stopped
+  #   env_file: ./.env
+  #   build:
+  #       context: ./frontendvue
+  #       dockerfile: Dockerfile
+  #   labels:
+  #     - "traefik.enable=true"
+  #     - "traefik.http.routers.frontendvue.rule=Host(`${LOCAL_IP}`)"
+  #     - "traefik.http.routers.frontendvue.rule=PathPrefix(`/`)"
+  #     - "traefik.http.routers.frontendvue.entrypoints=web"
+  #     - "traefik.http.routers.frontendvue.entrypoints=websecure"
+  #     - "traefik.http.routers.frontendvue.tls=true"
+  #   depends_on:
+  #     - mongo
+  #   networks:
+  #     - default
+
