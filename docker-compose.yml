@@ -85,12 +85,27 @@ services:
     networks:
       - default
 
+  postgres:
+    container_name: postgres
+    image: postgres:17.2
+    hostname: postgres
+    ports:
+      - "8069:5432"
+    restart: unless-stopped
+    env_file: ./.env    
+    volumes:
+      - shared_database:/data/db
+    secrets:
+      - postgres_root_password
+    networks:
+      - default
+
   mongo:
     container_name: mongo
-    image: mongo
+    image: mongo:8.0
     hostname: mongo
     ports:
-      - 27019:27017
+      - 8068:27017
     restart: unless-stopped
     env_file: ./.env    
     volumes:
@@ -111,6 +126,8 @@ networks:
         - subnet: 172.16.57.0/24
 
 secrets:
+  postgres_root_password:
+    file: postgres_root_password.txt
   mongodb_root_password:
     file: mongodb_root_password.txt
 

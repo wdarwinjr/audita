@@ -1,6 +1,6 @@
 .container {
   min-height: 100vh;
-  padding: 0 0.5rem;
+  padding: 0.5rem 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -8,7 +8,7 @@
 }
 
 .main {
-  padding: 5rem 0;
+  padding: 2rem 0;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -49,13 +49,13 @@
 .title {
   margin: 0;
   line-height: 1.15;
-  font-size: 4rem;
+  font-size: 3rem;
 }
 
 .subtitle {
   margin: 0;
   line-height: 1.15;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .title,
@@ -90,7 +90,7 @@
   justify-content: center;
   flex-wrap: wrap;
   max-width: 800px;
-  margin-top: 3rem;
+  margin-top: 1rem;
 }
 
 .card {
@@ -115,14 +115,14 @@
 }
 
 .card h3 {
-  margin: 0 0 1rem 0;
-  font-size: 1.5rem;
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
 }
 
 .card p {
   margin: 0;
   font-size: 1.25rem;
-  line-height: 1.5;
+  line-height: 1;
 }
 
 .logo {
