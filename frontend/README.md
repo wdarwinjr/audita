@@ -1,101 +1,53 @@
-# With Docker Compose
+# Next.js & NextUI Template
 
-This example contains everything needed to get a Next.js development and production environment up and running with Docker Compose.
+This is a template for creating applications using Next.js 14 (app directory) and NextUI (v2).
 
-## Benefits of Docker Compose
+[Try it on CodeSandbox](https://githubbox.com/nextui-org/next-app-template)
 
-- Develop locally without Node.js or TypeScript installed ✨
-- Easy to run, consistent development environment across macOS, Windows, and Linux teams
-- Run multiple Next.js apps, databases, and other microservices in a single deployment
-- Multistage builds combined with [Output Standalone](https://nextjs.org/docs/advanced-features/output-file-tracing#automatically-copying-traced-files) outputs up to 85% smaller apps (Approximately 110 MB compared to 1 GB with create-next-app)
-- Easy configuration with YAML files
+## Technologies Used
 
-## How to use
+- [Next.js 14](https://nextjs.org/docs/getting-started)
+- [NextUI v2](https://nextui.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Tailwind Variants](https://tailwind-variants.org)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Framer Motion](https://www.framer.com/motion/)
+- [next-themes](https://github.com/pacocoursey/next-themes)
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+## How to Use
 
-```bash
-npx create-next-app --example with-docker-compose with-docker-compose-app
-```
+### Use the template with create-next-app
 
-```bash
-yarn create next-app --example with-docker-compose with-docker-compose-app
-```
+To create a new project based on this template using `create-next-app`, run the following command:
 
 ```bash
-pnpm create next-app --example with-docker-compose with-docker-compose-app
+npx create-next-app -e https://github.com/nextui-org/next-app-template
 ```
 
-Optionally, after the installation is complete:
+### Install dependencies
 
-- Run `cd next-app`, then run `npm install` or `yarn install` or `pnpm install` to generate a lockfile.
-
-It is recommended to commit a lockfile to version control. Although the example will work without one, build errors are more likely to occur when using the latest version of all dependencies. This way, we're always using a known good configuration to develop and run in production.
-
-## Prerequisites
-
-Install [Docker Desktop](https://docs.docker.com/get-docker) for Mac, Windows, or Linux. Docker Desktop includes Docker Compose as part of the installation.
-
-## Development
-
-First, run the development server:
+You can use one of them `npm`, `yarn`, `pnpm`, `bun`, Example using `npm`:
 
 ```bash
-# Create a network, which allows containers to communicate
-# with each other, by using their container name as a hostname
-docker network create my_network
-
-# Build dev
-docker compose -f compose.dev.yaml build
-
-# Up dev
-docker compose -f compose.dev.yaml up
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-## Production
-
-Multistage builds are highly recommended in production. Combined with the Next [Output Standalone](https://nextjs.org/docs/advanced-features/output-file-tracing#automatically-copying-traced-files) feature, only `node_modules` files required for production are copied into the final Docker image.
-
-First, run the production server (Final image approximately 110 MB).
+### Run the development server
 
 ```bash
-# Create a network, which allows containers to communicate
-# with each other, by using their container name as a hostname
-docker network create my_network
-
-# Build prod
-docker compose -f compose.prod.yaml build
-
-# Up prod in detached mode
-docker compose -f compose.prod.yaml up -d
+npm run dev
 ```
 
-Alternatively, run the production server without multistage builds (Final image approximately 1 GB).
+### Setup pnpm (optional)
+
+If you are using `pnpm`, you need to add the following code to your `.npmrc` file:
 
 ```bash
-# Create a network, which allows containers to communicate
-# with each other, by using their container name as a hostname
-docker network create my_network
-
-# Build prod without multistage
-docker compose -f compose.prod-without-multistage.yaml build
-
-# Up prod without multistage in detached mode
-docker compose -f compose.prod-without-multistage.yaml up -d
+public-hoist-pattern[]=*@nextui-org/*
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+After modifying the `.npmrc` file, you need to run `pnpm install` again to ensure that the dependencies are installed correctly.
 
-## Useful commands
+## License
 
-```bash
-# Stop all running containers
-docker kill $(docker ps -aq) && docker rm $(docker ps -aq)
-
-# Free space
-docker system prune -af --volumes
-```
+Licensed under the [MIT license](https://github.com/nextui-org/next-app-template/blob/main/LICENSE).

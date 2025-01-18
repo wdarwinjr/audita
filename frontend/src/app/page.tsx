@@ -1,60 +1,59 @@
-import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
+import { Link } from "@nextui-org/link";
+import { Snippet } from "@nextui-org/snippet";
+import { Code } from "@nextui-org/code";
+import { button as buttonStyles } from "@nextui-org/theme";
 
-import SignupForm from "../ui/signup-form";
+import { siteConfig } from "@/src/config/site";
+import { title, subtitle } from "@/src/components/primitives";
+// import { GithubIcon } from "@/components/icons";
 
 export default function Home() {
   return (
+    <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
+      <div className="inline-block max-w-xl text-center justify-center">
+        <span className={title()}>Bem-vindo à&nbsp;</span>
+        <span className={title({ color: "violet" })}>AUDITA</span>
+        <br />
+        <br />
+        <span className={title({ size: "sm" })}>Associação dos Auditores-Fiscais&nbsp;</span>
+        <span className={title({ color: "blue" })}>Ativos&nbsp;</span>
+        <span className={title({ size: "sm" })}>da RFB</span>
+        <br />
+        <div className={subtitle({ class: "mt-4" })}>
+          Em defesa de uma categoria essencial à RFB.
+        </div>
+      </div>
 
-    <SignupForm/>
+      <div className="flex gap-3">
+        <Link
+          isExternal
+          className={buttonStyles({
+            color: "primary",
+            radius: "full",
+            variant: "shadow",
+          })}
+          href={siteConfig.links.docs}
+        >
+          Documentação
+        </Link>
+        {/* <Link
+          isExternal
+          className={buttonStyles({ variant: "bordered", radius: "full" })}
+          href={siteConfig.links.github}
+        >
+          <GithubIcon size={20} />
+          GitHub
+        </Link> */}
+      </div>
 
-    // <div className={styles.container}>
-
-    //   <Image src="/audita_mkt.jpg" alt="AuditaMkt Logo" width={'200'} height={'80'} />
-
-    //   <Head>
-    //     <title>AUDITA</title>
-    //     <link rel="icon" href="/favicon.ico" />
-    //   </Head>
-
-    //   <main className={styles.main}>
-
-    //     <h1 className={styles.title}>
-    //       Bem-vindo à AUDITA!
-    //     </h1>
-
-    //     <p className={styles.description}>
-    //       Comece colaborando na revisão do nosso ESTATUTO. <b>Associe-se!</b>
-    //     </p>
-
-    //     <SignupForm/>
-
-    //     <div className={styles.grid}>
-
-    //       <a href="https://docs.google.com/document/d/1Cu9XCsepyb-BiC49xfWTM2aJjFYNbgGVDyj59TBugZg/edit?usp=sharing" target="_blank" className={styles.card}>
-    //         <h3>Estatuto &rarr;</h3>
-    //         <p>Entre no documento, leia e colabore com suas ideias.</p>
-    //       </a>
-
-    //       <a href="https://docs.google.com/document/d/1axuWYM4h6ydFJLCVoftHtb2QqJwYTCNConIQJQqHlGk/edit?usp=sharing" target="_blank" className={styles.card}>
-    //         <h3>Nossos Valores e Objetivos &rarr;</h3>
-    //         <p>Saiba mais sobre a criação da nossa associação e seus valores e objetivos.</p>
-    //       </a>
-
-    //     </div>
-
-    //   </main>
-
-    //   <footer className={styles.footer}>
-    //       Powered by{" "}
-    //       <span className={styles.logo}>
-    //         <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-    //       </span>
-    //   </footer>
-
-    // </div>
+      <div className="mt-8">
+        <Snippet hideCopyButton hideSymbol variant="bordered">
+          <span>
+            Colabore na elaboração do nosso
+            <Code color="primary">Estatuto.</Code>
+          </span>
+        </Snippet>
+      </div>
+    </section>
   );
 }
-
-{/* "https://docs.google.com/document/d/12XlGqGr2FrzR3HzDow_KjovoYrwbEgUUf_ybAoaRqNE/edit?usp=sharing" */}
